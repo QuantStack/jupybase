@@ -52,7 +52,8 @@
         "watch:labextension": "jupyter labextension watch ."
     },
     "dependencies": {
-        "@jupyterlab/application": "^4.0.0"
+        "@jupyterlab/application": "^4.0.0",
+        "@supabase/supabase-js": "^2.43.2"
     },
     "devDependencies": {
         "@jupyterlab/builder": "^4.0.0",
@@ -62,6 +63,7 @@
         "@typescript-eslint/eslint-plugin": "^6.1.0",
         "@typescript-eslint/parser": "^6.1.0",
         "css-loader": "^6.7.1",
+        "dotenv-webpack": "^8.1.0",
         "eslint": "^8.36.0",
         "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-prettier": "^5.0.0",
@@ -88,7 +90,8 @@
     },
     "jupyterlab": {
         "extension": true,
-        "outputDir": "jupybase/labextension"
+        "outputDir": "jupybase/labextension",
+        "webpackConfig": "./extension.webpack.config.js"
     },
     "eslintIgnore": [
         "node_modules",
