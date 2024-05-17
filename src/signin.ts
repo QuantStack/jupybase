@@ -13,6 +13,24 @@ export const getURL = (path: string = '') => {
   return path ? `${url}/${path}` : url;
 };
 
+export function extractCookies() {
+  const cookies = document.cookie
+    .split(/\s*;\s*/)
+    .map(cookie => cookie.split('='));
+  console.log('######', cookies);
+  const isAccessToken = (name: string) =>
+    name.startsWith('sb-') && name.endsWith('-token.0');
+
+  const isRefreshToken = (name: string) =>
+    name.startsWith('sb-') && name.endsWith('-token.1');
+
+  const accessTokenCookie = cookies.find(x => isAccessToken(x[0]));
+  const refreshTokenCookie = cookies.find(x => isRefreshToken(x[0]));
+  if (accessTokenCookie && refreshTokenCookie) {
+    return { accessTokenCookie, refreshTokenCookie };
+  }
+  return undefined;
+}
 export async function signInWithOAuth() {
   const provider = 'github';
 
