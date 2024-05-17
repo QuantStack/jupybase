@@ -1,5 +1,5 @@
 import { createClient } from './client';
-import { MAIN_APP_PUBLIC_URL } from './config';
+import { MAIN_APP_PUBLIC_URL, QSAI_COOKIE_NAME } from './config';
 
 export const getURL = (path: string = '') => {
   let url = MAIN_APP_PUBLIC_URL;
@@ -17,12 +17,10 @@ export function extractCookies() {
   const cookies = document.cookie
     .split(/\s*;\s*/)
     .map(cookie => cookie.split('='));
-  console.log('######', cookies);
-  const isAccessToken = (name: string) =>
-    name.startsWith('sb-') && name.endsWith('-token.0');
+  const isAccessToken = (name: string) => name === QSAI_COOKIE_NAME.accessToken;
 
   const isRefreshToken = (name: string) =>
-    name.startsWith('sb-') && name.endsWith('-token.1');
+    name === QSAI_COOKIE_NAME.refreshToken;
 
   const accessTokenCookie = cookies.find(x => isAccessToken(x[0]));
   const refreshTokenCookie = cookies.find(x => isRefreshToken(x[0]));

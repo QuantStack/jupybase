@@ -8,9 +8,7 @@ export const NEXT_PUBLIC_SUPABASE_ANON_KEY =
 export const MAIN_APP_PUBLIC_URL =
   process.env.MAIN_APP_PUBLIC_URL || '{@{MAIN_APP_PUBLIC_URL}@}';
 
-console.log(
-  '%%%%%%%%',
-  NEXT_PUBLIC_SUPABASE_URL,
-  NEXT_PUBLIC_SUPABASE_ANON_KEY,
-  MAIN_APP_PUBLIC_URL
-);
+export const QSAI_COOKIE_NAME = {
+  accessToken: 'qsai-access-token',
+  refreshToken: 'qsai-refresh-token'
+};

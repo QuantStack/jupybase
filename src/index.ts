@@ -4,7 +4,7 @@ import {
 } from '@jupyterlab/application';
 // import { signInWithOAuth } from './signin';
 import { createClient } from './client';
-import { extractCookies } from './signin';
+import { extractCookies, getURL } from './signin';
 
 /**
  * Initialization data for the jupybase extension.
@@ -25,8 +25,8 @@ const plugin: JupyterFrontEndPlugin<void> = {
       const { data, error } = await supabase.auth.getUserIdentities();
       console.log('USER DATA', data, error);
     } else {
-      // await signInWithOAuth();
-      console.log('error');
+      console.log('USER IS NOT LOGGED IN');
+      window.location.replace(getURL('/signin/password_signin'));
     }
   }
 };
