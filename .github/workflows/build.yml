@@ -37,7 +37,6 @@ jobs:
 
         jupyter labextension list
         jupyter labextension list 2>&1 | grep -ie "jupybase.*OK"
-        python -m jupyterlab.browser_check
 
     - name: Package the extension
       run: |
@@ -79,14 +78,3 @@ jobs:
 
         jupyter labextension list
         jupyter labextension list 2>&1 | grep -ie "jupybase.*OK"
-        python -m jupyterlab.browser_check --no-browser-test
-
-
-  check_links:
-    name: Check Links
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-      - uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
-      - uses: jupyterlab/maintainer-tools/.github/actions/check-links@v1

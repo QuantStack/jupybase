@@ -4806,7 +4806,7 @@ __metadata:
     eslint: ^8.36.0
     eslint-config-prettier: ^8.8.0
     eslint-plugin-prettier: ^5.0.0
-    jupyter-drives-browser: "file:./../jupyter-drives-browser"
+    jupyter-drives-browser: ^0.1.0-alpha
     npm-run-all: ^4.1.5
     prettier: ^3.0.0
     rimraf: ^5.0.1
@@ -4822,15 +4822,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"jupyter-drives-browser@file:./../jupyter-drives-browser::locator=jupybase%40workspace%3A.":
-  version: 0.1.0
-  resolution: "jupyter-drives-browser@file:./../jupyter-drives-browser#./../jupyter-drives-browser::hash=8c54d4&locator=jupybase%40workspace%3A."
+"jupyter-drives-browser@npm:^0.1.0-alpha":
+  version: 0.1.0-alpha
+  resolution: "jupyter-drives-browser@npm:0.1.0-alpha"
   dependencies:
     "@aws-sdk/client-s3": ^3.511.0
     "@aws-sdk/s3-request-presigner": ^3.511.0
     "@jupyterlab/application": ^4.0.0
     "@lumino/coreutils": 2.1.2
-  checksum: b7b51f877dd6d23094cbe3c3cdd76236892ff5edf72e18beeaf96a3bd8d18aa4e8467c3b60970ab2e93fd2d726dbea90d11e1ffd08208115f81b3586909ef532
+  checksum: af2b8328e5d55a7aa400ceec659182b655f37d32ac62de6ec41c000668e267e8127c81ded3749bba6ab87bca41c84d2d6d9b92c295a2812d88b820ec46d9902c
   languageName: node
   linkType: hard
 
