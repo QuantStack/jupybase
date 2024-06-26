@@ -1,7 +1,7 @@
 {
     "name": "jupybase",
     "version": "0.1.0",
-    "description": "A JupyterLab extension.",
+    "description": "A JupyterLab extension to interact with Supabase.",
     "keywords": [
         "jupyter",
         "jupyterlab",
@@ -9,7 +9,7 @@
     ],
     "homepage": "",
     "bugs": {
-        "url": "https://github.com/trungleduc/jupybase/issues"
+        "url": "https://github.com/QuantStack/jupybase/issues"
     },
     "license": "BSD-3-Clause",
     "author": "Trung Le",
@@ -23,7 +23,7 @@
     "style": "style/index.css",
     "repository": {
         "type": "git",
-        "url": "https://github.com/trungleduc/jupybase.git"
+        "url": "https://github.com/QuantStack/jupybase.git"
     },
     "scripts": {
         "build": "jlpm build:lib && jlpm build:labextension:dev",
@@ -54,7 +54,7 @@
     "dependencies": {
         "@jupyterlab/application": "^4.0.0",
         "@supabase/supabase-js": "^2.43.2",
-        "jupyter-drives-browser": "^0.1.0-alpha"
+        "jupydrive-s3": "^0.1.0-a2"
     },
     "devDependencies": {
         "@jupyterlab/builder": "^4.0.0",
@@ -94,10 +94,10 @@
         "outputDir": "jupybase/labextension",
         "webpackConfig": "./extension.webpack.config.js",
         "disabledExtensions": [
-            "jupyter-drives-browser:auth-file-browser"
+            "jupydrive-s3:auth-file-browser"
         ],
         "sharedPackages": {
-            "jupyter-drives-browser": {
+            "jupydrive-s3": {
                 "bundled": false,
                 "singleton": true
             }

@@ -2,10 +2,9 @@ import {
   JupyterFrontEnd,
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
-// import { signInWithOAuth } from './signin';
 import { createClient } from './client';
 import { extractCookies, getURL } from './signin';
-import { IS3Auth } from 'jupyter-drives-browser';
+import { IS3Auth } from 'jupydrive-s3';
 import {
   NEXT_PUBLIC_SUPABASE_ANON_KEY,
   NEXT_PUBLIC_SUPABASE_PROJECT_REF,
@@ -28,15 +27,6 @@ const plugin: JupyterFrontEndPlugin<IS3Auth> = {
         access_token: authCookies.accessTokenCookie[1],
         refresh_token: authCookies.refreshTokenCookie[1]
       });
-      const { data, error } = await supabase.auth.getUserIdentities();
-      console.log('USER DATA', data, error);
-      // const url = 'http://127.0.0.1:54321/storage/v1/s3';
-      // const header = {
-      //   authorization: `Bearer ${authSession.data.session?.access_token}`
-      // };
-      const res = await supabase.storage.from('qsai').list();
-      console.log('rese', res);
-
       factory = async () => {
         const authSession = await supabase.auth.getSession();
         const sessionToken = authSession.data.session?.access_token;
@@ -53,7 +43,6 @@ const plugin: JupyterFrontEndPlugin<IS3Auth> = {
             }
           }
         };
-        console.log('IS3Auth data', authData);
         return authData;
       };
     } else {

@@ -1127,6 +1127,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jupyterlab/coreutils@npm:^6.2.2":
+  version: 6.2.2
+  resolution: "@jupyterlab/coreutils@npm:6.2.2"
+  dependencies:
+    "@lumino/coreutils": ^2.1.2
+    "@lumino/disposable": ^2.1.2
+    "@lumino/signaling": ^2.1.2
+    minimist: ~1.2.0
+    path-browserify: ^1.0.0
+    url-parse: ~1.5.4
+  checksum: cea1ec210ce60b32ccd213a75e10d85aed149437817e81ea89230552b33cec4be61472880669035228a156b89dcf99dccac3fe2e19191f8690d8870a732fa30b
+  languageName: node
+  linkType: hard
+
 "@jupyterlab/docregistry@npm:^4.2.0":
   version: 4.2.0
   resolution: "@jupyterlab/docregistry@npm:4.2.0"
@@ -1253,6 +1267,19 @@ __metadata:
     "@lumino/properties": ^2.0.1
     "@lumino/signaling": ^2.1.2
   checksum: 69620478aa7bf452d7440b9433b6411edef537cd7d9f72f87f70bd6fc0c8fc50003d02ab8d9d4b0746383f98cb7035b093ce5e596e6560e3c35c5a0fe434dce4
+  languageName: node
+  linkType: hard
+
+"@jupyterlab/statedb@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "@jupyterlab/statedb@npm:4.2.2"
+  dependencies:
+    "@lumino/commands": ^2.3.0
+    "@lumino/coreutils": ^2.1.2
+    "@lumino/disposable": ^2.1.2
+    "@lumino/properties": ^2.0.1
+    "@lumino/signaling": ^2.1.2
+  checksum: 6fbeed16a659b3f0d9b7a86cca91a0fd082c35b500264d58206f8a79640ea34ac00192c749a96c10f8762c6153ef26d3face6e6ce30b0e84479a0a5896254c38
   languageName: node
   linkType: hard
 
@@ -4806,7 +4833,7 @@ __metadata:
     eslint: ^8.36.0
     eslint-config-prettier: ^8.8.0
     eslint-plugin-prettier: ^5.0.0
-    jupyter-drives-browser: ^0.1.0-alpha
+    jupydrive-s3: ^0.1.0-a2
     npm-run-all: ^4.1.5
     prettier: ^3.0.0
     rimraf: ^5.0.1
@@ -4822,15 +4849,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"jupyter-drives-browser@npm:^0.1.0-alpha":
-  version: 0.1.0-alpha
-  resolution: "jupyter-drives-browser@npm:0.1.0-alpha"
+"jupydrive-s3@npm:^0.1.0-a2":
+  version: 0.1.0-a2
+  resolution: "jupydrive-s3@npm:0.1.0-a2"
   dependencies:
     "@aws-sdk/client-s3": ^3.511.0
     "@aws-sdk/s3-request-presigner": ^3.511.0
     "@jupyterlab/application": ^4.0.0
+    "@jupyterlab/coreutils": ^6.2.2
+    "@jupyterlab/statedb": ^4.2.2
     "@lumino/coreutils": 2.1.2
-  checksum: af2b8328e5d55a7aa400ceec659182b655f37d32ac62de6ec41c000668e267e8127c81ded3749bba6ab87bca41c84d2d6d9b92c295a2812d88b820ec46d9902c
+  checksum: 597d4d100072c448cf20bdbf64b9cd3ff7660fff49ac8de28aeed0b419f3198318d02bcff716077db9f83aec3917e7ee04e74d56c7c9cf2f98fc282b323f84d7
   languageName: node
   linkType: hard
 
