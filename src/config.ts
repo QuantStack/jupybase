@@ -24,3 +24,10 @@ export const QSAI_COOKIE_NAME = {
   accessToken: 'qsai-access-token',
   refreshToken: 'qsai-refresh-token'
 };
+
+export const DEV_MODE_S3_ACCESS_KEY_ID =
+  process.env.DEV_MODE_S3_ACCESS_KEY_ID || '{@{DEV_MODE_S3_ACCESS_KEY_ID}@}';
+
+export const DEV_MODE_S3_SECRET_ACCESS_KEY =
+  process.env.DEV_MODE_S3_SECRET_ACCESS_KEY ||
+  '{@{DEV_MODE_S3_SECRET_ACCESS_KEY}@}';
