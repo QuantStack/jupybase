@@ -54,7 +54,7 @@
     "dependencies": {
         "@jupyterlab/application": "^4.0.0",
         "@supabase/supabase-js": "^2.43.2",
-        "jupydrive-s3": "^0.1.0-a2"
+        "jupydrive-s3": "^0.1.0-a3"
     },
     "devDependencies": {
         "@jupyterlab/builder": "^4.0.0",
