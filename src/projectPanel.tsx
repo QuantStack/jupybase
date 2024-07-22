@@ -29,17 +29,20 @@ export interface IProjectProps {
   };
 }
 
-export class ProjectPanel extends React.Component<IProjectProps> {
-  constructor(props: IProjectProps) {
-    super(props);
-  }
-
-  private _onProfileClick(event?: React.MouseEvent<HTMLElement, MouseEvent>) {
+export function ProjectPanel({
+  name,
+  description,
+  details,
+  enviroment
+}: IProjectProps) {
+  const onProfileClick = (
+    event?: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => {
     const url = getURL('/account');
     window.open(url, '_blank', 'noreferrer');
-  }
+  };
 
-  private _renderToolbar(): React.ReactElement {
+  const renderToolbar = () => {
     return (
       <div className={projectNavClass}>
         <span className={spacer} />
@@ -47,100 +50,98 @@ export class ProjectPanel extends React.Component<IProjectProps> {
           className={projectNavButtonClass}
           title={'User Profile'}
           type="button"
-          onClick={() => this._onProfileClick()}
+          onClick={() => onProfileClick()}
         >
           <ProfileIcon.react tag="span" className={projectNavIconClass} />
         </button>
       </div>
     );
-  }
+  };
 
-  private _renderName(): React.ReactElement {
+  const renderName = () => {
     return (
       <div>
         <button
           disabled
           className={projectCardClass}
-          title={'Project: ' + this.props.name}
+          title={'Project: ' + name}
         >
           <ProjectIcon.react tag="span" className={projectCardIconClass} />
           <div className={projectCardTitleWrapperClass}>
             <p className={projectCardSubtitleClass}>{'Project'}</p>
-            <p>{this.props.name}</p>
+            <p>{name}</p>
           </div>
         </button>
       </div>
     );
-  }
+  };
 
-  private _renderEnviroment(): React.ReactElement {
+  const renderEnviroment = () => {
     return (
       <div>
         <button
           disabled
           className={projectCardClass}
-          title={'Enviroment: ' + this.props.enviroment}
+          title={'Enviroment: ' + enviroment.name}
         >
           <EnviromentIcon.react tag="span" className={projectCardIconClass} />
           <div className={projectCardTitleWrapperClass}>
             <p className={projectCardSubtitleClass}>{'Enviroment'}</p>
-            <p>{this.props.enviroment.name}</p>
+            <p>{enviroment.name}</p>
           </div>
         </button>
       </div>
     );
-  }
+  };
 
-  private _renderDescription(): React.ReactElement {
+  const renderDescription = () => {
     return (
       <div>
         <button
           disabled
           className={projectCardClass}
-          title={'Description: ' + this.props.description}
+          title={'Description: ' + description}
         >
           <DescriptionIcon.react tag="span" className={projectCardIconClass} />
           <div className={projectCardTitleWrapperClass}>
             <p className={projectCardSubtitleClass}>{'Description'}</p>
-            <p>{this.props.description}</p>
+            <p>{description}</p>
           </div>
         </button>
       </div>
     );
-  }
+  };
 
-  private _renderDetails(): React.ReactElement {
+  const renderDetails = () => {
     return (
       <div>
         <button
           disabled
           className={projectCardClass}
-          title={'Details: ' + this.props.details}
+          title={'Details: ' + details}
         >
           <DetailsIcon.react tag="span" className={projectCardIconClass} />
           <div className={projectCardTitleWrapperClass}>
             <p className={projectCardSubtitleClass}>{'Details'}</p>
-            <p>{this.props.details}</p>
+            <p>{details}</p>
           </div>
         </button>
       </div>
     );
-  }
+  };
 
-  render(): React.ReactElement {
-    return (
-      <React.Fragment>
-        {this._renderToolbar()}
-        <div className={panelWrapperClass}>
-          {this._renderName()}
-          <br></br>
-          {this._renderDescription()}
-          <br></br>
-          {this._renderEnviroment()}
-          <br></br>
-          {this._renderDetails()}
-        </div>
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      {renderToolbar()}
+      <div className={panelWrapperClass}>
+        {renderName()}
+        <br></br>
+        {renderDescription()}
+        <br></br>
+        {renderEnviroment()}
+        <br></br>
+        {renderDetails()}
+      </div>
+    </React.Fragment>
+  );
 }
