@@ -53,8 +53,13 @@
     },
     "dependencies": {
         "@jupyterlab/application": "^4.0.0",
+        "@lumino/coreutils": "^2.2.0",
         "@supabase/supabase-js": "^2.43.2",
+        "axios": "^1.7.2",
         "jupydrive-s3": "^0.1.0-a3"
+    },
+    "resolutions": {
+        "@lumino/coreutils": "^2.2.0"
     },
     "devDependencies": {
         "@jupyterlab/builder": "^4.0.0",
