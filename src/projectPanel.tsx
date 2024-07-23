@@ -95,7 +95,7 @@ export function ProjectPanel({
           <EnviromentIcon.react tag="span" className={projectCardIconClass} />
           <div className={projectCardTitleWrapperClass}>
             <p className={projectCardSubtitleClass}>{'Enviroment'}</p>
-            {open && (
+            {enviroment.dependencies.length > 0 && open && (
               <div className={projectCardTitleWrapperClass}>
                 <p>{'Dependencies:'}</p>
                 <ul className={enviromentList}>
