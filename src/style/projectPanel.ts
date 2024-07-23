@@ -127,3 +127,12 @@ export const projectNavClass = style({
 export const spacer = style({
   flex: '1 1 auto'
 });
+
+export const enviromentList = style({
+  paddingInlineStart: '10px',
+
+  /* top | right | bottom | left */
+  margin: 'auto 6px auto 6px'
+});
+
+export const enviromentListItem = style({});

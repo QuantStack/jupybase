@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {
+  enviromentList,
+  enviromentListItem,
   panelWrapperClass,
   projectCardClass,
   projectCardIconClass,
@@ -77,17 +79,34 @@ export function ProjectPanel({
   };
 
   const renderEnviroment = () => {
+    const [open, setOpen] = React.useState(false);
+
+    function onEnviromentClick() {
+      setOpen(!open);
+    }
+
     return (
       <div>
         <button
-          disabled
+          onClick={() => onEnviromentClick()}
           className={projectCardClass}
           title={'Enviroment: ' + enviroment.name}
         >
           <EnviromentIcon.react tag="span" className={projectCardIconClass} />
           <div className={projectCardTitleWrapperClass}>
             <p className={projectCardSubtitleClass}>{'Enviroment'}</p>
-            <p>{enviroment.name}</p>
+            {open && (
+              <div className={projectCardTitleWrapperClass}>
+                <p>{'Dependencies:'}</p>
+                <ul className={enviromentList}>
+                  {enviroment.dependencies.map((dependency, idx) => (
+                    <li key={idx} className={enviromentListItem}>
+                      {dependency}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </button>
       </div>
@@ -138,9 +157,9 @@ export function ProjectPanel({
         <br></br>
         {renderDescription()}
         <br></br>
-        {renderEnviroment()}
-        <br></br>
         {renderDetails()}
+        <br></br>
+        {renderEnviroment()}
       </div>
     </React.Fragment>
   );
