@@ -87,20 +87,21 @@ export const projectNavButtonClass = style({
   width: 'var(--jp-private-running-button-width) !important',
   right: 0,
 
-  margin: '0 0 0 0',
-  padding: '0px 6px !important',
+  margin: '2px 2px auto 2px',
+  padding: '0px 2px !important',
 
-  border: 'none',
-  background: 'var(--jp-layout-color1)',
+  borderWidth: '0',
+  borderRadius: '7px',
+
+  background: '#000000',
 
   $nest: {
     '&:active': {
       transform: 'scale(1.272019649)',
-      backgroundColor: 'var(--jp-layout-color3)'
+      backgroundColor: 'var(--md-blue-A400)'
     },
-
     '&:hover': {
-      backgroundColor: 'var(--md-blue-grey-50)'
+      backgroundColor: 'var(--md-blue-A400)'
     }
   }
 });
