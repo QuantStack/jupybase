@@ -87,7 +87,7 @@ export const projectNavButtonClass = style({
   width: 'var(--jp-private-running-button-width) !important',
   right: 0,
 
-  margin: '2px 2px auto 2px',
+  margin: '6px 2px auto 2px',
   padding: '0px 2px !important',
 
   borderWidth: '0',
