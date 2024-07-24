@@ -17,7 +17,8 @@ import {
   ProfileIcon,
   DescriptionIcon,
   DetailsIcon,
-  EnviromentIcon
+  EnviromentIcon,
+  SettingsIcon
 } from './icons';
 import { getURL } from './signin';
 import { IEnviromentContent } from '.';
@@ -39,6 +40,14 @@ export function ProjectPanel({
     event?: React.MouseEvent<HTMLElement, MouseEvent>
   ) => {
     const url = getURL('/account');
+    window.open(url, '_blank', 'noreferrer');
+  };
+
+  const onSettingsClick = (
+    event?: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => {
+    // TO DO: redirect to edit page of project
+    const url = getURL('/launcher/project');
     window.open(url, '_blank', 'noreferrer');
   };
 
@@ -71,6 +80,14 @@ export function ProjectPanel({
             <p className={projectCardSubtitleClass}>{'Project'}</p>
             <p>{name}</p>
           </div>
+        </button>
+        <button
+          className={projectNavButtonClass}
+          title={'Project Settings'}
+          type="button"
+          onClick={() => onSettingsClick()}
+        >
+          <SettingsIcon.react tag="span" className={projectNavIconClass} />
         </button>
       </div>
     );

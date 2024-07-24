@@ -5,6 +5,7 @@ import enviroment from '../style/enviromentIcon.svg';
 import description from '../style/descriptionIcon.svg';
 import profile from '../style/profileIcon.svg';
 import details from '../style/detailsIcon.svg';
+import settings from '../style/settingsIcon.svg';
 
 export const ProjectPanelIcon = new LabIcon({
   name: 'jupybase:projectPanel',
@@ -34,4 +35,9 @@ export const ProfileIcon = new LabIcon({
 export const DetailsIcon = new LabIcon({
   name: 'jupybase:details',
   svgstr: details
+});
+
+export const SettingsIcon = new LabIcon({
+  name: 'jupybase: settings',
+  svgstr: settings
 });
