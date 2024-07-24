@@ -6,6 +6,7 @@ import description from '../style/descriptionIcon.svg';
 import profile from '../style/profileIcon.svg';
 import details from '../style/detailsIcon.svg';
 import settings from '../style/settingsIcon.svg';
+import share from '../style/shareIcon.svg';
 
 export const ProjectPanelIcon = new LabIcon({
   name: 'jupybase:projectPanel',
@@ -38,6 +39,11 @@ export const DetailsIcon = new LabIcon({
 });
 
 export const SettingsIcon = new LabIcon({
-  name: 'jupybase: settings',
+  name: 'jupybase:settings',
   svgstr: settings
+});
+
+export const ShareIcon = new LabIcon({
+  name: 'jupybase:share',
+  svgstr: share
 });

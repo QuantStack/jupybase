@@ -18,7 +18,8 @@ import {
   DescriptionIcon,
   DetailsIcon,
   EnviromentIcon,
-  SettingsIcon
+  SettingsIcon,
+  ShareIcon
 } from './icons';
 import { getURL } from './signin';
 import { IEnviromentContent } from '.';
@@ -51,9 +52,14 @@ export function ProjectPanel({
     window.open(url, '_blank', 'noreferrer');
   };
 
+  const onShareClick = (event?: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    console.log('Sharing project button clicked.');
+  };
+
   const renderToolbar = () => {
     return (
       <div className={projectNavClass}>
+        <span className={spacer} />
         <span className={spacer} />
         <button
           className={projectNavButtonClass}
@@ -62,6 +68,22 @@ export function ProjectPanel({
           onClick={() => onProfileClick()}
         >
           <ProfileIcon.react tag="span" className={projectNavIconClass} />
+        </button>
+        <button
+          className={projectNavButtonClass}
+          title={'Share Project'}
+          type="button"
+          onClick={() => onShareClick()}
+        >
+          <ShareIcon.react tag="span" className={projectNavIconClass} />
+        </button>
+        <button
+          className={projectNavButtonClass}
+          title={'Project Settings'}
+          type="button"
+          onClick={() => onSettingsClick()}
+        >
+          <SettingsIcon.react tag="span" className={projectNavIconClass} />
         </button>
       </div>
     );
@@ -80,14 +102,6 @@ export function ProjectPanel({
             <p className={projectCardSubtitleClass}>{'Project'}</p>
             <p>{name}</p>
           </div>
-        </button>
-        <button
-          className={projectNavButtonClass}
-          title={'Project Settings'}
-          type="button"
-          onClick={() => onSettingsClick()}
-        >
-          <SettingsIcon.react tag="span" className={projectNavIconClass} />
         </button>
       </div>
     );
