@@ -20,15 +20,13 @@ import {
   EnviromentIcon
 } from './icons';
 import { getURL } from './signin';
+import { IEnviromentContent } from '.';
 
 export interface IProjectProps {
   name: string;
   description: string;
   details: string;
-  enviroment: {
-    name: string;
-    dependencies: string[];
-  };
+  enviroment: IEnviromentContent;
 }
 
 export function ProjectPanel({
@@ -90,7 +88,7 @@ export function ProjectPanel({
         <button
           onClick={() => onEnviromentClick()}
           className={projectCardClass}
-          title={'Enviroment: ' + enviroment.name}
+          title={'Enviroment'}
         >
           <EnviromentIcon.react tag="span" className={projectCardIconClass} />
           <div className={projectCardTitleWrapperClass}>

@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import { ProjectPanel } from './projectPanel';
 import { projectWidgetStyle } from './style/projectPanel';
+import { IEnviromentContent } from '.';
 
 export class ProjectPanelWidget extends ReactWidget {
   constructor(options: Private.IProjectOptions) {
@@ -32,7 +33,7 @@ export class ProjectPanelWidget extends ReactWidget {
   private _projectName: string;
   private _projectDescription: string;
   private _projectDetails: string;
-  private _enviroment: { name: string; dependencies: string[] };
+  private _enviroment: IEnviromentContent;
 }
 
 export namespace Private {
@@ -40,9 +41,6 @@ export namespace Private {
     name: string;
     description: string;
     details: string;
-    enviroment: {
-      name: string;
-      dependencies: string[];
-    };
+    enviroment: IEnviromentContent;
   }
 }
