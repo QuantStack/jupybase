@@ -7,6 +7,8 @@ import profile from '../style/profileIcon.svg';
 import details from '../style/detailsIcon.svg';
 import settings from '../style/settingsIcon.svg';
 import share from '../style/shareIcon.svg';
+import collaborators from '../style/projectCollaborators.svg';
+import individualCollaborator from '../style/individualCollaboratorBlue.svg';
 
 export const ProjectPanelIcon = new LabIcon({
   name: 'jupybase:projectPanel',
@@ -46,4 +48,14 @@ export const SettingsIcon = new LabIcon({
 export const ShareIcon = new LabIcon({
   name: 'jupybase:share',
   svgstr: share
+});
+
+export const CollaboratorsIcon = new LabIcon({
+  name: 'jupybase:collaborators',
+  svgstr: collaborators
+});
+
+export const IndividualCollaboratorIcon = new LabIcon({
+  name: 'jupybase:individual-collaborator',
+  svgstr: individualCollaborator
 });

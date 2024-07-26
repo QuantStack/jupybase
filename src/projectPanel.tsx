@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
-  enviromentList,
-  enviromentListItem,
+  enviromentListClass,
+  enviromentListItemClass,
   panelWrapperClass,
   projectCardClass,
   projectCardIconClass,
@@ -23,6 +23,7 @@ import {
 } from './icons';
 import { getURL } from './signin';
 import { IEnviromentContent } from '.';
+import { SharingProjectDialog } from './sharingProjectDialog';
 
 export interface IProjectProps {
   name: string;
@@ -37,23 +38,20 @@ export function ProjectPanel({
   details,
   enviroment
 }: IProjectProps) {
-  const onProfileClick = (
-    event?: React.MouseEvent<HTMLElement, MouseEvent>
-  ) => {
+  const onProfileClick = () => {
     const url = getURL('/account');
     window.open(url, '_blank', 'noreferrer');
   };
 
-  const onSettingsClick = (
-    event?: React.MouseEvent<HTMLElement, MouseEvent>
-  ) => {
+  const onSettingsClick = () => {
     // TO DO: redirect to edit page of project
     const url = getURL('/launcher/project');
     window.open(url, '_blank', 'noreferrer');
   };
 
-  const onShareClick = (event?: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    console.log('Sharing project button clicked.');
+  const onShareClick = () => {
+    // open the sharing project dialog
+    SharingProjectDialog({ projectName: name, userName: 'Denisa' });
   };
 
   const renderToolbar = () => {
@@ -127,9 +125,9 @@ export function ProjectPanel({
             {enviroment.dependencies.length > 0 && open && (
               <div className={projectCardTitleWrapperClass}>
                 <p>{'Dependencies:'}</p>
-                <ul className={enviromentList}>
+                <ul className={enviromentListClass}>
                   {enviroment.dependencies.map((dependency, idx) => (
-                    <li key={idx} className={enviromentListItem}>
+                    <li key={idx} className={enviromentListItemClass}>
                       {dependency}
                     </li>
                   ))}
