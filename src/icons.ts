@@ -1,7 +1,7 @@
 import { LabIcon } from '@jupyterlab/ui-components';
 import projectPanel from '../style/projectPanelIcon.svg';
 import project from '../style/projectIcon.svg';
-import enviroment from '../style/enviromentIcon.svg';
+import environment from '../style/environmentIcon.svg';
 import description from '../style/descriptionIcon.svg';
 import profile from '../style/profileIcon.svg';
 import details from '../style/detailsIcon.svg';
@@ -20,9 +20,9 @@ export const ProjectIcon = new LabIcon({
   svgstr: project
 });
 
-export const EnviromentIcon = new LabIcon({
-  name: 'jupybase:enviroment',
-  svgstr: enviroment
+export const EnvironmentIcon = new LabIcon({
+  name: 'jupybase:environment',
+  svgstr: environment
 });
 
 export const DescriptionIcon = new LabIcon({

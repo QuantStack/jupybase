@@ -19,21 +19,21 @@ import {
   DEV_MODE_S3_SECRET_ACCESS_KEY
 } from './config';
 
-export interface IEnviromentContent {
+export interface IEnvironmentContent {
   kernelEnv: string;
   buildEnv: string;
   dependencies: string[];
   lockfile: string;
 }
 /**
- * A promise that resolves to project and enviroment information.
+ * A promise that resolves to project and environment information.
  */
 export interface IProjectInfo {
   factory: () => Promise<{
     name: string;
     description: string;
     details: string;
-    enviroment: IEnviromentContent;
+    environment: IEnvironmentContent;
   }>;
 }
 
@@ -142,7 +142,7 @@ const projectInfo: JupyterFrontEndPlugin<IProjectInfo> = {
         details:
           result.data[0].content.description ??
           'Default JupyterLite deployment proposed by QS.AI. It contains the popular Python scientific libraries like Numpy, Scipy,... as well as vizualization tools.',
-        enviroment: {
+        environment: {
           buildEnv: result.data[0].content.buildEnv ?? '',
           kernelEnv: result.data[0].content.kernelEnv ?? '',
           lockfile: result.data[0].content.lockfile ?? '',

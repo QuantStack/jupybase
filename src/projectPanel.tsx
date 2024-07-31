@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {
-  enviromentListClass,
-  enviromentListItemClass,
+  environmentButtonClass,
   panelWrapperClass,
   projectCardClass,
   projectCardIconClass,
@@ -17,26 +16,27 @@ import {
   ProfileIcon,
   DescriptionIcon,
   DetailsIcon,
-  EnviromentIcon,
+  EnvironmentIcon,
   SettingsIcon,
   ShareIcon
 } from './icons';
 import { getURL } from './signin';
-import { IEnviromentContent } from '.';
+import { IEnvironmentContent } from '.';
 import { SharingProjectDialog } from './sharingProjectDialog';
+import { EnvironmentDialog } from './EnviromentDialog';
 
 export interface IProjectProps {
   name: string;
   description: string;
   details: string;
-  enviroment: IEnviromentContent;
+  environment: IEnvironmentContent;
 }
 
 export function ProjectPanel({
   name,
   description,
   details,
-  enviroment
+  environment
 }: IProjectProps) {
   const onProfileClick = () => {
     const url = getURL('/account');
@@ -105,35 +105,43 @@ export function ProjectPanel({
     );
   };
 
-  const renderEnviroment = () => {
-    const [open, setOpen] = React.useState(false);
+  const renderEnvironment = () => {
+    function onBuildEnvironmentClick() {
+      EnvironmentDialog({
+        projectName: name,
+        envCode: environment.buildEnv,
+        envType: 'build'
+      });
+    }
 
-    function onEnviromentClick() {
-      setOpen(!open);
+    function onKernelEnvironmentClick() {
+      EnvironmentDialog({
+        projectName: name,
+        envCode: environment.kernelEnv,
+        envType: 'kernel'
+      });
     }
 
     return (
       <div>
-        <button
-          onClick={() => onEnviromentClick()}
-          className={projectCardClass}
-          title={'Enviroment'}
-        >
-          <EnviromentIcon.react tag="span" className={projectCardIconClass} />
+        <button className={projectCardClass} title={'Environment'}>
+          <EnvironmentIcon.react tag="span" className={projectCardIconClass} />
           <div className={projectCardTitleWrapperClass}>
-            <p className={projectCardSubtitleClass}>{'Enviroment'}</p>
-            {enviroment.dependencies.length > 0 && open && (
-              <div className={projectCardTitleWrapperClass}>
-                <p>{'Dependencies:'}</p>
-                <ul className={enviromentListClass}>
-                  {enviroment.dependencies.map((dependency, idx) => (
-                    <li key={idx} className={enviromentListItemClass}>
-                      {dependency}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            <p className={projectCardSubtitleClass}>{'Environment'}</p>
+            <button
+              title={'Build environment'}
+              className={environmentButtonClass}
+              onClick={() => onBuildEnvironmentClick()}
+            >
+              {'Build environment'}
+            </button>
+            <button
+              title={'Kernel environment'}
+              className={environmentButtonClass}
+              onClick={() => onKernelEnvironmentClick()}
+            >
+              {'Kernel environment'}
+            </button>
           </div>
         </button>
       </div>
@@ -187,7 +195,7 @@ export function ProjectPanel({
         <br></br>
         {renderDetails()}
         <br></br>
-        {renderEnviroment()}
+        {renderEnvironment()}
       </div>
     </React.Fragment>
   );

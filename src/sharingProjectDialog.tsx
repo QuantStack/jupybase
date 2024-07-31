@@ -3,6 +3,7 @@ import { Dialog, showDialog } from '@jupyterlab/apputils';
 import { Search } from '@jupyter/react-components';
 import {
   addUserButtonClass,
+  closeButtonDialogClass,
   collaboratorItemClass,
   collaboratorRoleClass,
   collaboratorsListClass,
@@ -84,10 +85,9 @@ export const SharingProjectDialog = ({
               <p>{user.name + (user.name === userName ? ' (you)' : '')}</p>
               <p className={individualCollaboratorClass}>{user.email}</p>
             </div>
-            <p className={collaboratorRoleClass}>{'owner'}</p>
+            <p className={collaboratorRoleClass}>{user.role}</p>
           </div>
         ))}
-        ;
       </div>
 
       <br></br>
@@ -122,7 +122,6 @@ export const SharingProjectDialog = ({
             </div>
           </div>
         ))}
-        ;
       </div>
     </div>
   );
@@ -133,7 +132,7 @@ export const SharingProjectDialog = ({
     buttons: [
       Dialog.createButton({
         label: 'Close',
-        className: 'jp-About-button jp-mod-reject jp-mod-styled'
+        className: closeButtonDialogClass
       })
     ]
   });

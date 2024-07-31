@@ -129,30 +129,10 @@ export const spacer = style({
   flex: '1 1 auto'
 });
 
-export const enviromentListClass = style({
-  paddingInlineStart: '10px',
-
-  /* top | right | bottom | left */
-  margin: 'auto 6px auto 6px'
-});
-
-export const enviromentListItemClass = style({});
-
 export const shareHeaderInfoClass = style({
   display: 'block',
   paddingTop: '2px'
 });
-
-// export const shareDialogClass = style({
-//   display: 'flex',
-//   // font-size: var(--jp-ui-font-size1);
-//   // color: var(--jp-ui-font-color1);
-//   textAlign: 'left',
-//   flexDirection: 'column',
-//   width: '100%',
-//   minWidth: '360px',
-//   overflow: 'hidden'
-// });
 
 export const collaboratorsTitleClass = style({
   marginTop: '0px',
@@ -286,3 +266,49 @@ export const userButtonClass = style({
   alignSelf: 'center'
 });
 
+export const environmentButtonClass = style({
+  border: 0,
+  borderRadius: '7px',
+
+  padding: '1px 2px',
+  textAlign: 'center',
+
+  margin: '2px 2px',
+  width: '160px',
+
+  backgroundColor: 'var(--md-blue-grey-100)',
+
+  $nest: {
+    '&:active': {
+      backgroundColor: 'var(--md-blue-A400)'
+    },
+    '&:hover': {
+      backgroundColor: 'var(--md-blue-grey-200)',
+      borderColor: 'var(--md-blue-grey-200)'
+    }
+  }
+});
+
+export const closeButtonDialogClass = style({
+  boxSizing: 'border-box',
+  // height: '30px !important',
+  // alignContent: 'center',
+
+  margin: '0',
+  /* top | right | bottom | left */
+  padding: '0px 2px 0px 2px',
+
+  borderWidth: '0',
+  borderRadius: '7px',
+
+  background: '#000000 !important',
+
+  $nest: {
+    '&:active': {
+      backgroundColor: 'var(--md-blue-A400) !important'
+    },
+    '&:hover': {
+      backgroundColor: 'var(--md-blue-A400) !important'
+    }
+  }
+});
