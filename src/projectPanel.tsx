@@ -28,7 +28,7 @@ import {
   SharingProjectDialogBody,
   SharingProjectDialogTitle
 } from './sharingProjectDialog';
-import { EnvironmentDialog } from './enviromentDialog';
+import { EnvironmentDialog } from './environmentDialog';
 
 export interface IProjectProps {
   name: string;
@@ -58,7 +58,7 @@ export function ProjectPanel({
     // open the sharing project dialog
     return showDialog({
       title: <SharingProjectDialogTitle projectName={name} />,
-      body: <SharingProjectDialogBody userName={'Denisa'} />,
+      body: <SharingProjectDialogBody userName={'Admin'} />,
       buttons: [
         Dialog.createButton({
           label: 'Close',
