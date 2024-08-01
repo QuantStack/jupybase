@@ -18,32 +18,24 @@ import { CollaboratorsIcon, IndividualCollaboratorIcon } from './icons';
 
 const availableUsersList = [
   {
-    name: 'Meriem',
-    email: 'meriem@quantstack.net'
+    name: 'User 2',
+    email: 'user2@example.com'
   },
   {
-    name: 'Darian',
-    email: 'darian@quantstack.net'
-  },
-  {
-    name: 'Trung',
-    email: 'trung@quantstack.net'
-  },
-  {
-    name: 'Florence',
-    email: 'florence@quantstack.net'
+    name: 'User 3',
+    email: 'user3@example.com'
   }
 ];
 
 const projectCollaboratorsList = [
   {
-    name: 'Denisa',
-    email: 'denisa@qunatstack.net',
+    name: 'Admin',
+    email: 'admin@example.com',
     role: 'owner'
   },
   {
-    name: 'Anastasiia',
-    email: 'anastasiia@quantstack.net',
+    name: 'User 1',
+    email: 'user1@example.com',
     role: 'editor'
   }
 ];
