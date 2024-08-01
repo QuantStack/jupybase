@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Dialog, showDialog } from '@jupyterlab/apputils';
+import { useState } from 'react';
 import { Search } from '@jupyter/react-components';
 import {
   addUserButtonClass,
-  closeButtonDialogClass,
   collaboratorItemClass,
   collaboratorRoleClass,
   collaboratorsListClass,
@@ -29,6 +28,10 @@ const availableUsersList = [
   {
     name: 'Trung',
     email: 'trung@quantstack.net'
+  },
+  {
+    name: 'Florence',
+    email: 'florence@quantstack.net'
   }
 ];
 
@@ -42,24 +45,22 @@ const projectCollaboratorsList = [
     name: 'Anastasiia',
     email: 'anastasiia@quantstack.net',
     role: 'editor'
-  },
-  {
-    name: 'Florence',
-    email: 'florence@quantstack.net',
-    role: 'viewer'
   }
 ];
 
-export interface ISharingProjectProps {
+interface ISharingProjectTitleProps {
+  projectName: string;
+}
+
+interface ISharingProjectProps {
   projectName: string;
   userName: string;
 }
 
-export const SharingProjectDialog = ({
-  projectName,
-  userName
-}: ISharingProjectProps) => {
-  const title = (
+export function SharingProjectDialogTitle({
+  projectName
+}: ISharingProjectTitleProps) {
+  return (
     <span className="jp-About-header">
       <CollaboratorsIcon.react margin="7px 9.5px" height="auto" width="28px" />
       <div className="jp-About-header-info">
@@ -70,18 +71,54 @@ export const SharingProjectDialog = ({
       </div>
     </span>
   );
+}
 
-  const body = (
+export function SharingProjectDialogBody({
+  projectName,
+  userName
+}: ISharingProjectProps) {
+  const [projectCollaborators, setProjectCollaborators] = useState(
+    projectCollaboratorsList
+  );
+  const [availableUsers, setAvailableUsers] = useState(availableUsersList);
+
+  const updateAvailableUsersList = (user: { name: string; email: string }) => {
+    const userIndex = availableUsers.indexOf(user);
+    const users = [...availableUsers];
+    users.splice(userIndex, 1);
+    setAvailableUsers(users);
+  };
+
+  const updateProjectCollaborators = (user: {
+    name: string;
+    email: string;
+  }) => {
+    const addedProjectCollaborator = {
+      name: user.name,
+      email: user.email,
+      role: 'viewer' // TO DO: let user choose collaborator role
+    };
+
+    // add user to project collaborators
+    const collaborators = [...projectCollaborators];
+    collaborators.push(addedProjectCollaborator);
+    setProjectCollaborators(collaborators);
+
+    // eliminate user from available users list
+    updateAvailableUsersList(user);
+  };
+
+  return (
     <div className="jp-About-body">
       <p className={collaboratorsTitleClass}>{'Project Collaborators'}</p>
       <div className={collaboratorsListClass}>
-        {projectCollaboratorsList.map((user, idx) => (
-          <div className={collaboratorItemClass}>
+        {projectCollaborators.map((user, idx) => (
+          <div className={collaboratorItemClass} key={idx}>
             <IndividualCollaboratorIcon.react
               tag="span"
               className={projectCardIconClass}
             />
-            <div className={individualCollboratorWrapperClass}>
+            <div className={individualCollboratorWrapperClass} key={user.name}>
               <p>{user.name + (user.name === userName ? ' (you)' : '')}</p>
               <p className={individualCollaboratorClass}>{user.email}</p>
             </div>
@@ -100,40 +137,27 @@ export const SharingProjectDialog = ({
         }}
       />
       <div className={collaboratorsListClass}>
-        {availableUsersList.map((user, idx) => (
-          <div className={collaboratorItemClass}>
+        {availableUsers.map((user, idx) => (
+          <div className={collaboratorItemClass} key={idx}>
             <IndividualCollaboratorIcon.react
               tag="span"
               className={projectCardIconClass}
             />
-            <div className={individualCollboratorWrapperClass}>
+            <div className={individualCollboratorWrapperClass} key={user.name}>
               <p>{user.name} </p>
               <p className={individualCollaboratorClass}>{user.email}</p>
             </div>
-            <div className={collaboratorRoleClass}>
-              <button
-                className={addUserButtonClass}
-                onClick={() => {
-                  console.log('Added user!');
-                }}
-              >
-                <p className={userButtonClass}>{'add'}</p>
-              </button>
-            </div>
+            <button
+              className={addUserButtonClass}
+              onClick={() => {
+                updateProjectCollaborators(user);
+              }}
+            >
+              <p className={userButtonClass}>{'add'}</p>
+            </button>
           </div>
         ))}
       </div>
     </div>
   );
-
-  return showDialog({
-    title,
-    body,
-    buttons: [
-      Dialog.createButton({
-        label: 'Close',
-        className: closeButtonDialogClass
-      })
-    ]
-  });
-};
+}

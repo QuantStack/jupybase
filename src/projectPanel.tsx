@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { Dialog, showDialog } from '@jupyterlab/apputils';
 import {
+  closeButtonDialogClass,
   environmentButtonClass,
   panelWrapperClass,
   projectCardClass,
@@ -22,8 +24,11 @@ import {
 } from './icons';
 import { getURL } from './signin';
 import { IEnvironmentContent } from '.';
-import { SharingProjectDialog } from './sharingProjectDialog';
-import { EnvironmentDialog } from './EnviromentDialog';
+import {
+  SharingProjectDialogBody,
+  SharingProjectDialogTitle
+} from './sharingProjectDialog';
+import { EnvironmentDialog } from './enviromentDialog';
 
 export interface IProjectProps {
   name: string;
@@ -51,7 +56,16 @@ export function ProjectPanel({
 
   const onShareClick = () => {
     // open the sharing project dialog
-    SharingProjectDialog({ projectName: name, userName: 'Denisa' });
+    return showDialog({
+      title: <SharingProjectDialogTitle projectName={name} />,
+      body: <SharingProjectDialogBody projectName={name} userName={'Denisa'} />,
+      buttons: [
+        Dialog.createButton({
+          label: 'Close',
+          className: closeButtonDialogClass
+        })
+      ]
+    });
   };
 
   const renderToolbar = () => {
