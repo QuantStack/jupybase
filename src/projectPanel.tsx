@@ -58,7 +58,7 @@ export function ProjectPanel({
     // open the sharing project dialog
     return showDialog({
       title: <SharingProjectDialogTitle projectName={name} />,
-      body: <SharingProjectDialogBody projectName={name} userName={'Denisa'} />,
+      body: <SharingProjectDialogBody userName={'Denisa'} />,
       buttons: [
         Dialog.createButton({
           label: 'Close',

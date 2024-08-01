@@ -53,7 +53,6 @@ interface ISharingProjectTitleProps {
 }
 
 interface ISharingProjectProps {
-  projectName: string;
   userName: string;
 }
 
@@ -73,14 +72,20 @@ export function SharingProjectDialogTitle({
   );
 }
 
-export function SharingProjectDialogBody({
-  projectName,
-  userName
-}: ISharingProjectProps) {
+export function SharingProjectDialogBody({ userName }: ISharingProjectProps) {
   const [projectCollaborators, setProjectCollaborators] = useState(
     projectCollaboratorsList
   );
   const [availableUsers, setAvailableUsers] = useState(availableUsersList);
+  const [filter, setFilter] = useState('');
+
+  const onFilterChange = (event: any) => {
+    setFilter(event.target.value);
+  };
+
+  const onFilterReset = () => {
+    setFilter('');
+  };
 
   const updateAvailableUsersList = (user: { name: string; email: string }) => {
     const userIndex = availableUsers.indexOf(user);
@@ -132,31 +137,39 @@ export function SharingProjectDialogBody({
       <Search
         className={usersSearchClass}
         placeholder="Search user..."
-        onInput={() => {
-          console.log('INPUT');
-        }}
+        value={filter}
+        onInput={onFilterChange}
+        onChange={onFilterChange}
+        onReset={onFilterReset}
       />
       <div className={collaboratorsListClass}>
-        {availableUsers.map((user, idx) => (
-          <div className={collaboratorItemClass} key={idx}>
-            <IndividualCollaboratorIcon.react
-              tag="span"
-              className={projectCardIconClass}
-            />
-            <div className={individualCollboratorWrapperClass} key={user.name}>
-              <p>{user.name} </p>
-              <p className={individualCollaboratorClass}>{user.email}</p>
+        {availableUsers
+          .filter(user =>
+            user.name.toLowerCase().includes(filter.toLowerCase())
+          )
+          .map((user, idx) => (
+            <div className={collaboratorItemClass} key={idx}>
+              <IndividualCollaboratorIcon.react
+                tag="span"
+                className={projectCardIconClass}
+              />
+              <div
+                className={individualCollboratorWrapperClass}
+                key={user.name}
+              >
+                <p>{user.name} </p>
+                <p className={individualCollaboratorClass}>{user.email}</p>
+              </div>
+              <button
+                className={addUserButtonClass}
+                onClick={() => {
+                  updateProjectCollaborators(user);
+                }}
+              >
+                <p className={userButtonClass}>{'add'}</p>
+              </button>
             </div>
-            <button
-              className={addUserButtonClass}
-              onClick={() => {
-                updateProjectCollaborators(user);
-              }}
-            >
-              <p className={userButtonClass}>{'add'}</p>
-            </button>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
