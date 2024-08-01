@@ -241,6 +241,7 @@ const projectSidePanel: JupyterFrontEndPlugin<void> = {
 
 const plugins: JupyterFrontEndPlugin<any>[] = [
   apiClientPlugin,
+  s3plugin,
   projectSidePanel,
   projectInfo
 ];

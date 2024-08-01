@@ -22,7 +22,7 @@ import {
   SettingsIcon,
   ShareIcon
 } from './icons';
-import { getURL } from './signin';
+import { getURL } from './tools';
 import { IEnvironmentContent } from '.';
 import {
   SharingProjectDialogBody,
