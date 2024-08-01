@@ -88,7 +88,7 @@ export const projectNavButtonClass = style({
   right: 0,
 
   margin: '6px 2px auto 2px',
-  padding: '0px 2px !important',
+  padding: '2px 2px !important',
 
   borderWidth: '0',
   borderRadius: '7px',
