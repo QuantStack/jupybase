@@ -146,7 +146,8 @@ export const collaboratorsListClass = style({
   alignItems: 'center',
   flexDirection: 'column',
 
-  height: '100px'
+  maxHeight: '100px',
+  overflowY: 'auto'
 });
 
 export const collaboratorItemClass = style({
