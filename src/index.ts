@@ -165,41 +165,37 @@ const s3plugin: JupyterFrontEndPlugin<IS3Auth> = {
 const projectInfo: JupyterFrontEndPlugin<IProjectInfo> = {
   id: 'jupybase:project-info-provider',
   description: 'The project information provider.',
+  requires: [IJupybaseClient],
   provides: IProjectInfo,
-  activate: async (): Promise<IProjectInfo> => {
+  activate: async (
+    app: JupyterFrontEnd,
+    jupybaseClient: IJupybaseClient
+  ): Promise<IProjectInfo> => {
     // extract the project id from the url
     const searchParams = new URLSearchParams(window.location.search);
     const projectId = searchParams.get('id');
 
-    // initiate supabase client and extract the current session access token
-    const supabase = createClient();
-    const authSession = await supabase.auth.getSession();
-    const sessionToken = authSession.data.session?.access_token;
-
-    // fetch the project information
+    // get the project information
+    const apiClient = jupybaseClient.apiClient;
     const url = getURL(`/api/v1/env/${projectId}`);
-    const response = await fetch(url, {
-      headers: {
-        Accept: 'application/json',
-        Authorization: `Bearer ${sessionToken}`
+
+    const result = await apiClient?.get(url);
+    const content = result!.data.data[0].content;
+
+    const projectData = {
+      name: content.name ?? '',
+      description: content.shortDesc ?? '',
+      details: content.description ?? '',
+      environment: {
+        buildEnv: content.buildEnv ?? '',
+        kernelEnv: content.kernelEnv ?? '',
+        lockfile: content.lockfile ?? '',
+        dependencies: content.dependencies ?? []
       }
-    });
-    const result = await response.json();
+    };
+
     return {
-      factory: async () => ({
-        name: result.data[0].content.name ?? 'Default Project',
-        description:
-          result.data[0].content.shortDesc ?? 'Default Jupyterlite deployment',
-        details:
-          result.data[0].content.description ??
-          'Default JupyterLite deployment proposed by QS.AI. It contains the popular Python scientific libraries like Numpy, Scipy,... as well as vizualization tools.',
-        environment: {
-          buildEnv: result.data[0].content.buildEnv ?? '',
-          kernelEnv: result.data[0].content.kernelEnv ?? '',
-          lockfile: result.data[0].content.lockfile ?? '',
-          dependencies: result.data[0].content.dependencies
-        }
-      })
+      factory: async () => projectData
     };
   }
 };
