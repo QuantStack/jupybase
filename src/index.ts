@@ -3,7 +3,6 @@ import {
   JupyterFrontEnd,
   JupyterFrontEndPlugin
 } from '@jupyterlab/application';
-import { Token } from '@lumino/coreutils';
 import { Panel } from '@lumino/widgets';
 import { ProjectPanelIcon } from './icons';
 import { ProjectPanelWidget } from './projectWidget';
@@ -20,33 +19,8 @@ import {
   NEXT_PUBLIC_SUPABASE_S3_REGION,
   NEXT_PUBLIC_SUPABASE_S3_URL
 } from './config';
-import { IJupybaseClient } from './token';
+import { IJupybaseClient, IProjectInfo } from './token';
 import { extractCookies, getURL } from './tools';
-
-export interface IEnvironmentContent {
-  kernelEnv: string;
-  buildEnv: string;
-  dependencies: string[];
-  lockfile: string;
-}
-/**
- * A promise that resolves to project and environment information.
- */
-export interface IProjectInfo {
-  factory: () => Promise<{
-    name: string;
-    description: string;
-    details: string;
-    environment: IEnvironmentContent;
-  }>;
-}
-
-/**
- * A token for the plugin that provides project information.
- */
-export const IProjectInfo = new Token<IProjectInfo>(
-  'jupybase:project-info-provider'
-);
 
 /**
  * The ID used for the project side bar.
@@ -179,14 +153,21 @@ const projectInfo: JupyterFrontEndPlugin<IProjectInfo> = {
     const apiClient = jupybaseClient.apiClient;
     const url = getURL(`/api/v1/env/${projectId}`);
 
-    let content = {name: '', shortDesc : '',  buildEnv : '',  kernelEnv : '', lockfile: '', dependencies : [] }
-    try{
-        const result = await apiClient?.get(url);
-        content = result!.data.data[0].content;
+    let content = {
+      name: '',
+      shortDesc: '',
+      description: '',
+      buildEnv: '',
+      kernelEnv: '',
+      lockfile: '',
+      dependencies: []
+    };
+    try {
+      const result = await apiClient?.get(url);
+      content = result!.data.data[0].content;
     } catch {
-     // handle error here
+      console.log('No project information could be retrieved.');
     }
-
 
     const projectData = {
       name: content.name ?? '',

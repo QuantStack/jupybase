@@ -23,7 +23,7 @@ import {
   ShareIcon
 } from './icons';
 import { getURL } from './tools';
-import { IEnvironmentContent } from '.';
+import { IEnvironmentContent } from './token';
 import {
   SharingProjectDialogBody,
   SharingProjectDialogTitle
