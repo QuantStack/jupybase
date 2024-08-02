@@ -41,3 +41,10 @@ export interface IUser {
   email: string;
   role?: string;
 }
+
+export interface IProjectOptions {
+  name: string;
+  description: string;
+  details: string;
+  environment: IEnvironmentContent;
+}

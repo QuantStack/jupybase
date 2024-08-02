@@ -3,10 +3,10 @@ import * as React from 'react';
 
 import { ProjectPanel } from './projectPanel';
 import { projectWidgetStyle } from './style/projectPanel';
-import { IEnvironmentContent } from './token';
+import { IEnvironmentContent, IProjectOptions } from './token';
 
 export class ProjectPanelWidget extends ReactWidget {
-  constructor(options: Private.IProjectOptions) {
+  constructor(options: IProjectOptions) {
     super();
     this.node.id = 'ProjectSidebar-root';
     this.addClass(projectWidgetStyle);
@@ -32,13 +32,4 @@ export class ProjectPanelWidget extends ReactWidget {
   private _projectDescription: string;
   private _projectDetails: string;
   private _environment: IEnvironmentContent;
-}
-
-export namespace Private {
-  export interface IProjectOptions {
-    name: string;
-    description: string;
-    details: string;
-    environment: IEnvironmentContent;
-  }
 }
