@@ -108,9 +108,10 @@ export function SharingProjectDialogBody({ userName }: ISharingProjectProps) {
     };
 
     // add user to project collaborators
-    const collaborators = [...projectCollaborators];
-    collaborators.push(addedProjectCollaborator);
-    setProjectCollaborators([...projectCollaborators, addedProjectCollaborator]);
+    setProjectCollaborators([
+      ...projectCollaborators,
+      addedProjectCollaborator
+    ]);
 
     // eliminate user from available users list
     updateAvailableUsersList(user);
