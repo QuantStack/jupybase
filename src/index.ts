@@ -179,8 +179,14 @@ const projectInfo: JupyterFrontEndPlugin<IProjectInfo> = {
     const apiClient = jupybaseClient.apiClient;
     const url = getURL(`/api/v1/env/${projectId}`);
 
-    const result = await apiClient?.get(url);
-    const content = result!.data.data[0].content;
+    let content = {name: '', shortDesc : '',  buildEnv : '',  kernelEnv : '', lockfile: '', dependencies : [] }
+    try{
+        const result = await apiClient?.get(url);
+        content = result!.data.data[0].content;
+    } catch {
+     // handle error here
+    }
+
 
     const projectData = {
       name: content.name ?? '',
