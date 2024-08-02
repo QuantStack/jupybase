@@ -37,23 +37,23 @@ export interface IProjectProps {
   environment: IEnvironmentContent;
 }
 
+const onProfileClick = () => {
+  const url = getURL('/account');
+  window.open(url, '_blank', 'noreferrer');
+};
+
+const onSettingsClick = () => {
+  // TO DO: redirect to edit page of project
+  const url = getURL('/launcher/project');
+  window.open(url, '_blank', 'noreferrer');
+};
+
 export function ProjectPanel({
   name,
   description,
   details,
   environment
 }: IProjectProps) {
-  const onProfileClick = () => {
-    const url = getURL('/account');
-    window.open(url, '_blank', 'noreferrer');
-  };
-
-  const onSettingsClick = () => {
-    // TO DO: redirect to edit page of project
-    const url = getURL('/launcher/project');
-    window.open(url, '_blank', 'noreferrer');
-  };
-
   const onShareClick = () => {
     // open the sharing project dialog
     return showDialog({
