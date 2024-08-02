@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { ProjectPanel } from './projectPanel';
 import { projectWidgetStyle } from './style/projectPanel';
-import { IEnvironmentContent } from '.';
+import { IEnvironmentContent } from './token';
 
 export class ProjectPanelWidget extends ReactWidget {
   constructor(options: Private.IProjectOptions) {

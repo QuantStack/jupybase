@@ -72,7 +72,6 @@ export function ProjectPanel({
     return (
       <div className={projectNavClass}>
         <span className={spacer} />
-        <span className={spacer} />
         <button
           className={projectNavButtonClass}
           title={'User Profile'}
