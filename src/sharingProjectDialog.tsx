@@ -15,8 +15,9 @@ import {
   usersSearchClass
 } from './style/projectPanel';
 import { CollaboratorsIcon, IndividualCollaboratorIcon } from './icons';
+import { IUser } from './token';
 
-const availableUsersList = [
+const availableUsersList: IUser[] = [
   {
     name: 'User 3',
     email: 'user3@example.com'
@@ -32,7 +33,7 @@ const availableUsersList = [
   }
 ];
 
-const projectCollaboratorsList = [
+const projectCollaboratorsList: IUser[] = [
   {
     name: 'Admin',
     email: 'admin@example.com',
@@ -90,17 +91,14 @@ export function SharingProjectDialogBody({ userName }: ISharingProjectProps) {
     setFilter('');
   };
 
-  const updateAvailableUsersList = (user: { name: string; email: string }) => {
+  const updateAvailableUsersList = (user: IUser) => {
     const userIndex = availableUsers.indexOf(user);
     const users = [...availableUsers];
     users.splice(userIndex, 1);
     setAvailableUsers(users);
   };
 
-  const updateProjectCollaborators = (user: {
-    name: string;
-    email: string;
-  }) => {
+  const updateProjectCollaborators = (user: IUser) => {
     const addedProjectCollaborator = {
       name: user.name,
       email: user.email,

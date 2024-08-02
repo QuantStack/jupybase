@@ -35,3 +35,9 @@ export interface IProjectInfo {
 export const IProjectInfo = new Token<IProjectInfo>(
   'jupybase:project-info-provider'
 );
+
+export interface IUser {
+  name: string;
+  email: string;
+  role?: string;
+}
