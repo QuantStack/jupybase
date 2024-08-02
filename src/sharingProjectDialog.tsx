@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { Search } from '@jupyter/react-components';
 import {
   addUserButtonClass,
@@ -75,11 +74,12 @@ export function SharingProjectDialogTitle({
 }
 
 export function SharingProjectDialogBody({ userName }: ISharingProjectProps) {
-  const [projectCollaborators, setProjectCollaborators] = useState(
+  const [projectCollaborators, setProjectCollaborators] = React.useState(
     projectCollaboratorsList
   );
-  const [availableUsers, setAvailableUsers] = useState(availableUsersList);
-  const [filter, setFilter] = useState('');
+  const [availableUsers, setAvailableUsers] =
+    React.useState(availableUsersList);
+  const [filter, setFilter] = React.useState('');
 
   const onFilterChange = (event: any) => {
     setFilter(event.target.value);

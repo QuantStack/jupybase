@@ -54,7 +54,7 @@ export function ProjectPanel({
   details,
   environment
 }: IProjectProps) {
-  const onShareClick = () => {
+  const onShareClick = React.useCallback(() => {
     // open the sharing project dialog
     return showDialog({
       title: <SharingProjectDialogTitle projectName={name} />,
@@ -66,7 +66,7 @@ export function ProjectPanel({
         })
       ]
     });
-  };
+  }, [name]);
 
   const renderToolbar = () => {
     return (
@@ -119,21 +119,21 @@ export function ProjectPanel({
   };
 
   const renderEnvironment = () => {
-    function onBuildEnvironmentClick() {
+    const onBuildEnvironmentClick = React.useCallback(() => {
       EnvironmentDialog({
         projectName: name,
         envCode: environment.buildEnv,
         envType: 'build'
       });
-    }
+    }, [name, environment.buildEnv]);
 
-    function onKernelEnvironmentClick() {
+    const onKernelEnvironmentClick = React.useCallback(() => {
       EnvironmentDialog({
         projectName: name,
         envCode: environment.kernelEnv,
         envType: 'kernel'
       });
-    }
+    }, [name, environment.kernelEnv]);
 
     return (
       <div>
