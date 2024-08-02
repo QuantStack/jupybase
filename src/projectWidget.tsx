@@ -19,14 +19,12 @@ export class ProjectPanelWidget extends ReactWidget {
 
   render(): JSX.Element {
     return (
-      <div>
-        <ProjectPanel
-          name={this._projectName}
-          description={this._projectDescription}
-          details={this._projectDetails}
-          environment={this._environment}
-        />
-      </div>
+      <ProjectPanel
+        name={this._projectName}
+        description={this._projectDescription}
+        details={this._projectDetails}
+        environment={this._environment}
+      />
     );
   }
 
