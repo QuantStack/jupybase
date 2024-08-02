@@ -7,7 +7,9 @@ export const panelWrapperClass = style({
   flexDirection: 'column',
   height: '100%',
   overflowY: 'auto',
-  alignItems: 'center'
+  alignItems: 'center',
+  margin: '10px 0px',
+  gap: '15px'
 });
 
 export const projectCardClass = style({
@@ -132,6 +134,17 @@ export const spacer = style({
 export const shareHeaderInfoClass = style({
   display: 'block',
   paddingTop: '2px'
+});
+
+export const sharingProjectWrapperClass = style({
+  display: 'flex',
+  textAlign: 'left',
+  flexDirection: 'column',
+  width: '100%',
+  minWidth: '360px',
+  overflow: 'visible',
+
+  gap: '12px'
 });
 
 export const collaboratorsTitleClass = style({

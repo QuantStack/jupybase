@@ -201,13 +201,9 @@ export function ProjectPanel({
     <React.Fragment>
       {renderToolbar()}
       <div className={panelWrapperClass}>
-        <br></br>
         {renderName()}
-        <br></br>
         {renderDescription()}
-        <br></br>
         {renderDetails()}
-        <br></br>
         {renderEnvironment()}
       </div>
     </React.Fragment>

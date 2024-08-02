@@ -10,6 +10,7 @@ import {
   individualCollboratorWrapperClass,
   projectCardIconClass,
   shareHeaderInfoClass,
+  sharingProjectWrapperClass,
   userButtonClass,
   usersSearchClass
 } from './style/projectPanel';
@@ -116,40 +117,11 @@ export function SharingProjectDialogBody({ userName }: ISharingProjectProps) {
   };
 
   return (
-    <div className="jp-About-body">
-      <p className={collaboratorsTitleClass}>{'Project Collaborators'}</p>
-      <div className={collaboratorsListClass}>
-        {projectCollaborators.map((user, idx) => (
-          <div className={collaboratorItemClass} key={idx}>
-            <IndividualCollaboratorIcon.react
-              tag="span"
-              className={projectCardIconClass}
-            />
-            <div className={individualCollboratorWrapperClass} key={user.name}>
-              <p>{user.name + (user.name === userName ? ' (you)' : '')}</p>
-              <p className={individualCollaboratorClass}>{user.email}</p>
-            </div>
-            <p className={collaboratorRoleClass}>{user.role}</p>
-          </div>
-        ))}
-      </div>
-
-      <br></br>
-      <p className={collaboratorsTitleClass}>{'Add collaborators'}</p>
-      <Search
-        className={usersSearchClass}
-        placeholder="Search user..."
-        value={filter}
-        onInput={onFilterChange}
-        onChange={onFilterChange}
-        onReset={onFilterReset}
-      />
-      <div className={collaboratorsListClass}>
-        {availableUsers
-          .filter(user =>
-            user.name.toLowerCase().includes(filter.toLowerCase())
-          )
-          .map((user, idx) => (
+    <div className={sharingProjectWrapperClass}>
+      <div>
+        <p className={collaboratorsTitleClass}>{'Project Collaborators'}</p>
+        <div className={collaboratorsListClass}>
+          {projectCollaborators.map((user, idx) => (
             <div className={collaboratorItemClass} key={idx}>
               <IndividualCollaboratorIcon.react
                 tag="span"
@@ -159,19 +131,54 @@ export function SharingProjectDialogBody({ userName }: ISharingProjectProps) {
                 className={individualCollboratorWrapperClass}
                 key={user.name}
               >
-                <p>{user.name} </p>
+                <p>{user.name + (user.name === userName ? ' (you)' : '')}</p>
                 <p className={individualCollaboratorClass}>{user.email}</p>
               </div>
-              <button
-                className={addUserButtonClass}
-                onClick={() => {
-                  updateProjectCollaborators(user);
-                }}
-              >
-                <p className={userButtonClass}>{'add'}</p>
-              </button>
+              <p className={collaboratorRoleClass}>{user.role}</p>
             </div>
           ))}
+        </div>
+      </div>
+
+      <div>
+        <p className={collaboratorsTitleClass}>{'Add collaborators'}</p>
+        <Search
+          className={usersSearchClass}
+          placeholder="Search user..."
+          value={filter}
+          onInput={onFilterChange}
+          onChange={onFilterChange}
+          onReset={onFilterReset}
+        />
+        <div className={collaboratorsListClass}>
+          {availableUsers
+            .filter(user =>
+              user.name.toLowerCase().includes(filter.toLowerCase())
+            )
+            .map((user, idx) => (
+              <div className={collaboratorItemClass} key={idx}>
+                <IndividualCollaboratorIcon.react
+                  tag="span"
+                  className={projectCardIconClass}
+                />
+                <div
+                  className={individualCollboratorWrapperClass}
+                  key={user.name}
+                >
+                  <p>{user.name} </p>
+                  <p className={individualCollaboratorClass}>{user.email}</p>
+                </div>
+                <button
+                  className={addUserButtonClass}
+                  onClick={() => {
+                    updateProjectCollaborators(user);
+                  }}
+                >
+                  <p className={userButtonClass}>{'add'}</p>
+                </button>
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );
