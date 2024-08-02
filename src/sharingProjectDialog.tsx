@@ -83,37 +83,46 @@ export function SharingProjectDialogBody({ userName }: ISharingProjectProps) {
     React.useState(availableUsersList);
   const [filter, setFilter] = React.useState('');
 
-  const onFilterChange = (event: any) => {
-    setFilter(event.target.value);
-  };
+  const onFilterChange = React.useCallback(
+    (event: any) => {
+      setFilter(event.target.value);
+    },
+    [filter]
+  );
 
-  const onFilterReset = () => {
+  const onFilterReset = React.useCallback(() => {
     setFilter('');
-  };
+  }, [filter]);
 
-  const updateAvailableUsersList = (user: IUser) => {
-    const userIndex = availableUsers.indexOf(user);
-    const users = [...availableUsers];
-    users.splice(userIndex, 1);
-    setAvailableUsers(users);
-  };
+  const updateAvailableUsersList = React.useCallback(
+    (user: IUser) => {
+      const userIndex = availableUsers.indexOf(user);
+      const users = [...availableUsers];
+      users.splice(userIndex, 1);
+      setAvailableUsers(users);
+    },
+    [availableUsers]
+  );
 
-  const updateProjectCollaborators = (user: IUser) => {
-    const addedProjectCollaborator = {
-      name: user.name,
-      email: user.email,
-      role: 'viewer' // TO DO: let user choose collaborator role
-    };
+  const updateProjectCollaborators = React.useCallback(
+    (user: IUser) => {
+      const addedProjectCollaborator = {
+        name: user.name,
+        email: user.email,
+        role: 'viewer' // TO DO: let user choose collaborator role
+      };
 
-    // add user to project collaborators
-    setProjectCollaborators([
-      ...projectCollaborators,
-      addedProjectCollaborator
-    ]);
+      // add user to project collaborators
+      setProjectCollaborators([
+        ...projectCollaborators,
+        addedProjectCollaborator
+      ]);
 
-    // eliminate user from available users list
-    updateAvailableUsersList(user);
-  };
+      // eliminate user from available users list
+      updateAvailableUsersList(user);
+    },
+    [availableUsers, projectCollaborators]
+  );
 
   return (
     <div className={sharingProjectWrapperClass}>
