@@ -77,7 +77,7 @@ export function ProjectPanel({
           className={projectNavButtonClass}
           title={'User Profile'}
           type="button"
-          onClick={() => onProfileClick()}
+          onClick={onProfileClick}
         >
           <ProfileIcon.react tag="span" className={projectNavIconClass} />
         </button>
