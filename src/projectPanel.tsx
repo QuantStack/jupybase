@@ -85,7 +85,7 @@ export function ProjectPanel({
           className={projectNavButtonClass}
           title={'Share Project'}
           type="button"
-          onClick={() => onShareClick()}
+          onClick={onShareClick}
         >
           <ShareIcon.react tag="span" className={projectNavIconClass} />
         </button>
@@ -93,7 +93,7 @@ export function ProjectPanel({
           className={projectNavButtonClass}
           title={'Project Settings'}
           type="button"
-          onClick={() => onSettingsClick()}
+          onClick={onSettingsClick}
         >
           <SettingsIcon.react tag="span" className={projectNavIconClass} />
         </button>
@@ -145,14 +145,14 @@ export function ProjectPanel({
             <button
               title={'Build environment'}
               className={environmentButtonClass}
-              onClick={() => onBuildEnvironmentClick()}
+              onClick={onBuildEnvironmentClick}
             >
               {'Build environment'}
             </button>
             <button
               title={'Kernel environment'}
               className={environmentButtonClass}
-              onClick={() => onKernelEnvironmentClick()}
+              onClick={onKernelEnvironmentClick}
             >
               {'Kernel environment'}
             </button>
